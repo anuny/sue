@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MiniVue-Demo</title>
+</head>
+</html>
+<body>
+ 	<div id="app" >
+ 		<p if="false" once ref="test" :style="{color:'#f00'}" @click="a.b.c.d" f-test="ddd">if - {name}</p>
+ 		<p else-if="false">else-if  - {name}</p>
+ 		<p else>else  - {name}</p>
+    <p>456</p>
+    <ul>
+      <li for="(p,pk,pi) in arr">
+        {p.name}
+        <ul>
+          <li for="(c,ck,ci) in p.children">{c.name}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</body>
+<script>
+
+
+	//new Fui('app')
+
+
+  const vm = new Fui({
+  	el:'#app',
+  	props:{
+  	},
+    data: {
+      num:100,
+      name: '小明',
+      obj: {
+        a:1
+      },
+      arr:[
+        {
+        	name:'nick',
+        	children:[
+        		{name:'nick-1'},
+        		{name:'nick-2'}
+        	]
+        },
+        {
+        	name:'tom',
+        	children:[
+        		{name:'tom-1'},
+        		{name:'tom-2'}
+        	]
+        }
+      ]
+    },
+    computed:{
+    	a(){
+    		return this.num + 100
+    	}
+    },
+    watch: {
+    	num(val){
+    	}
+    },
+    beforeCreate(){
+      //console.time('life');
+      console.time('create');
+      //console.log('beforeCreate');
+    },
+    created(){
+      console.timeEnd('create');
+    	//console.log('created');
+    },
+    beforeMount(){
+      console.time('mount');
+      //console.log('beforeMount');
+    },
+    mounted(){
+
+      console.timeEnd('mount');
+      console.log(this);
+      //console.timeEnd('life');
+    	//console.log('mounted');
+      setTimeout(()=>{
+        this.arr.push({
+          name:'jack',
+          children:[
+            {name:'jack-1'},
+            {name:'jack-2'}
+          ]
+        })
+      },1000)
+    },
+    beforeUpdate(){
+      console.time('update');
+      //console.log('beforeUpdate');
+    },
+    updated(){
+      console.timeEnd('update');
+    	//console.log('updated');
+    },
+    methods: {
+      pop(t,e){
+        this.arr.pop()
+      },
+      sayHi() {
+        alert('hi')
+      }
+    }
+  })
+</script>

@@ -1,0 +1,58 @@
+<fui-table>
+  <child></child>
+  <p>123</p>
+  <p>{a}</p>
+  <button @click="add">add</button>
+  <li for="(item,key,index) in arr" @click="pop">{item.name}</li>
+</fui-table>
+<script>
+  import test from './test'
+  {
+    sync:false,
+    data(){
+      return {
+        a:'a',
+        b:'b',
+        c:'c',
+        arr:[
+          {name:'nick'},
+          {name:'tom'}
+        ],
+        color:'#f00'
+      }
+    },
+    computed:{
+
+    },
+    methods:{
+      add(){
+        //this.arr.push({name:'mks'})
+        this.a += 'a'
+        console.log(this);
+      },
+      pop(t,e){
+        this.arr.pop()
+      }
+    },
+    created(){
+      //console.log('created');
+    },
+    mounted(){
+      for(var i=0;i<10;i++){
+        //this.arr.push({name:'jack'})
+      }
+      //console.log('mounted');
+      setTimeout(()=>{
+        //this.a = 123
+        //this.arr.push({name:'jack'})
+        //this.arr.pop()
+      },1000)
+    },
+    updated(){
+      console.log('updated');
+    },
+    unmounted(){
+      // console.log('unmounted');
+    }
+  }
+</script>

@@ -1,0 +1,22 @@
+<child2>
+  <p >{str} - {num}</p>
+</child2>
+
+<script>
+  {
+    data(){
+      return {
+        num:0,
+        str:'is child2'
+      }
+    },
+    mounted(){
+      setTimeout(()=>{
+        this.num=10000
+      },3000)
+    },
+    updated(){
+      console.log('child2 updated');
+    },
+  }
+</script>

@@ -1,0 +1,30 @@
+<child>
+  <p>{ str } {childnum}</p>
+  <ul>
+		<child2 ddd='123'></child2>
+	</ul>
+</child>
+
+<script>
+  {
+    props:{
+     childnum:{
+       default:0,
+       type:Number
+     }
+   },
+    data(){
+      return {
+        str:'is child'
+      }
+    },
+    mounted(){
+      setTimeout(()=>{
+        this.str+=' updated'
+      },2000)
+    },
+    updated(){
+      console.log('child updated');
+    },
+  }
+</script>
